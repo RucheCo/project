@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include "mbed.h"
+#include "states.h"
 
 int main ()
 {
