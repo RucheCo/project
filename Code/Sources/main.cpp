@@ -7,6 +7,7 @@
 #include "mbed.h"
 #include "../Headers/period.h"
 #include "../Headers/states.h"
+#include "../Headers/constants.h"
 
 State state = Start;		// état de base : start
 
