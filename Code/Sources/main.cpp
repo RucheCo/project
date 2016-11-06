@@ -9,6 +9,8 @@
 #include "../Headers/states.h"
 #include "../Headers/constants.h"
 
+Serial pc(USBTX, USBRX);    // serie USB (ne pas oublier de souder sur la carte)
+
 State state = Start;		// état de base : start
 
 int main ()
