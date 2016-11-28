@@ -1,0 +1,32 @@
+#include "mbed.h"
+#include "AM2303.h"
+#define thermo D4
+AM2303 thermometre(thermo);
+
+int main()
+{
+    float humidity;
+    //Readable for the screen variable
+    char tempera[10];
+   
+    while (true) {
+        
+        //Check if DHT22 is responding
+        state = thermometre.readData();
+                
+        if (state == AM2303::OK) {
+           // if (state != AM2303::OK) {  Sigfox.printf("<Error: %d>\n", state);} 
+           // else {
+                //Read the data from the DHT22     
+                //temperature = thermometre.readTemperature(); 
+                humidity = thermometre.readHumidity(); 
+           // }
+            //Read the acceleration value from the MMA8451 
+                    
+            Sigfox.printf("AT$SS=%x %x 0%x 0%x 0%x 0%x\r\n", (int)humidity, (int)accx, (int)accy,(int)accz, (int)current_value);
+            
+           
+            wait(3600);
+        }
+    }
+}
