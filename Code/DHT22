@@ -18,12 +18,12 @@ int main()
            // if (state != AM2303::OK) {  Sigfox.printf("<Error: %d>\n", state);} 
            // else {
                 //Read the data from the DHT22     
-                //temperature = thermometre.readTemperature(); 
+                temperature = thermometre.readTemperature(); 
                 humidity = thermometre.readHumidity(); 
            // }
             //Read the acceleration value from the MMA8451 
                     
-            Sigfox.printf("AT$SS=%x %x 0%x 0%x 0%x 0%x\r\n", (int)humidity, (int)accx, (int)accy,(int)accz, (int)current_value);
+            Sigfox.printf("AT$SS=%x %x 0%x 0%x 0%x 0%x\r\n", (int)humidity, (int)temperature, (int)accx, (int)accy,(int)accz, (int)current_value);
             
            
             wait(3600);
