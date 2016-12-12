@@ -13,8 +13,9 @@ void setup()
 
 void loop() 
 {
+  float temp = 0.0;
+  float weight = 0.0;
   getTempSonde();
   weightScale_value();
-  Serial.println(weightScale_value());
-
+  Serial.println(weight,temp);
 }
