@@ -1,0 +1,2 @@
+void setupSonde();
+float getTempSonde();
