@@ -14,9 +14,9 @@ void weightScale_init()
   scale.tare(); //Reset the scale to 0  
 }
 
-double weightScale_value()
+float weightScale_value()
 {
   scale.set_scale(calibration_factor); //Adjust to this calibration factor
-  double pesee =scale.get_units()*0.45359237;
+  float pesee =scale.get_units()*0.45359237;
   return pesee;
 }

@@ -49,9 +49,6 @@ void setupSonde()
 
 // --- ici instructions à exécuter au démarrage ---
 
-Serial.begin(115200); // initialise connexion série à 115200 bauds
-// IMPORTANT : régler le terminal côté PC avec la même valeur de transmission
-
 
 // XXXXXXXXXXXXXXXXXXXXXX Détection du capteur présent sur la broche XXXXXXXXXXXXXXXXXXXXXXX
 Serial.println("**** Detection du capteur **** ");

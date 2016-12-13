@@ -4,7 +4,7 @@
 #define WEIGHTSCALE_H_INCLUDED
 
 void weightScale_init();
-double weightScale_value();
+float weightScale_value();
 
 
 #endif 
