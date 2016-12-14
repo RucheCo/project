@@ -22,9 +22,9 @@ void setRtcTime ()
 }
 
 // fonction pour recupérer le timestamp (nb de secondes depuis 00:00:00 01/01/1970)
-int get_timestamp () 
+unsigned long int get_timestamp () 
 {
-    int timestamp;
+    unsigned long int timestamp;
     DateTime now = rtc.now();
 
 //    // decommenter pour verifier
