@@ -1,10 +1,12 @@
 #include <Wire.h>
 #include "RTClib.h"
 
+RTC_DS1307 rtc;
+
 // fonction qui déclare le RTC
 void setupRTC ()
 {
-  RTC_DS1307 rtc;
+  //RTC_DS1307 rtc;
   char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 }
 
@@ -22,6 +24,7 @@ void setRtcTime ()
 // fonction pour recupérer le timestamp (nb de secondes depuis 00:00:00 01/01/1970)
 int get_timestamp () 
 {
+    int timestamp;
     DateTime now = rtc.now();
 
 //    // decommenter pour verifier
@@ -51,6 +54,7 @@ int get_timestamp ()
 // fonction qui récupère un binaire ( 1 si jour, 0 si nuit)
 int get_day ()
 {
+    int jour;
     DateTime now = rtc.now();
     
     if ( (now.hour() < 6) || (now.hour() > 22) )
