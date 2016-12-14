@@ -2,7 +2,7 @@
 #define DHTPIN 2    // Changer le pin sur lequel est branché le DHT
 #define DHTTYPE DHT22     // DHT 22  (AM2302)
  
-//DHT dht(DHTPIN, DHTTYPE); 
+DHT dht(DHTPIN, DHTTYPE); 
 
 unsigned int Humidity_value() {
   // Délai de 2 secondes entre chaque mesure. La lecture prend 250 millisecondes
