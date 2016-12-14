@@ -19,5 +19,7 @@ void loop()
   temp = getTempSonde();
   weight = weightScale_value();
   humidity = Humidity_value();
-  Serial.println(weight,temp,humidity);
+  Serial.println(weight);
+  Serial.println(temp);
+  Serial.println(humidity);
 }
