@@ -14,7 +14,8 @@ unsigned int GetHumidity() {
   
   // read without samples.
   byte humidity = 0;
-  if (dht11.read(pinDHT11, &humidity, NULL)) {
+  byte temperature = 0;
+  if (dht11.read(pinDHT11, &temperature, &humidity, NULL)) {
     Serial.print("Read DHT11 failed.");
     return;
   }
