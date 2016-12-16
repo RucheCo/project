@@ -22,7 +22,7 @@ void loop()
   //TS = get_timestamp();
   //temp = getTempSonde();
   //weight = weightScale_value();
-  humidity = Humidity_value();
+  humidity = GetHumidity();
   //Serial.println(weight);
   //Serial.print("temperature : ");
   //Serial.println(temp);
