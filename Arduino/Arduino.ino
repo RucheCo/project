@@ -18,7 +18,7 @@ void loop()
   //unsigned long int TS = 0;
   //float temp = 0.0;
   //float weight = 0.0;
-  float humidity = 0.0;
+  int humidity = 0;
   //TS = get_timestamp();
   //temp = getTempSonde();
   //weight = weightScale_value();
@@ -30,4 +30,6 @@ void loop()
   //Serial.println(TS);
   //Serial.println();
   Serial.println(humidity);
+  
+  delay(1000);
 }
