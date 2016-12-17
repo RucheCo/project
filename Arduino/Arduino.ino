@@ -4,6 +4,9 @@
 //#include "RTC.h"
 //#include "DHT11.h"
 //#include "lcdI2C.h"
+#include "states.h"
+
+State state = Start;
 
 void setup() 
 {
@@ -12,17 +15,16 @@ void setup()
   //setupSonde();
   //setRtcTime();
   //weightScale_init();
-  setupLcdI2C();
+  //setupLcdI2C();
   Serial.println("setup done");
 
 }
 
 void loop() 
 {
-  Serial.println("main start");
   
-  char sentenceRow1[16] = "that is how";
-  char sentenceRow2[16] = "it is done";  
+  //char sentenceRow1[16] = "that is how";
+  //char sentenceRow2[16] = "it is done";  
   //unsigned long int TS = 0;
   //float temp = 0.0;
   //float weight = 0.0;
@@ -37,8 +39,59 @@ void loop()
   //Serial.print("timestamp : ");
   //Serial.println(TS);
   //Serial.println();  
-  lcdPrint(sentenceRow1,sentenceRow2);
-  Serial.println("main done");
-  
-  delay(1000);
-}
+  //lcdPrint(sentenceRow1,sentenceRow2);
+  //delay(1000);
+
+  ///////////////////////////////////////////////////////////////////
+
+  // Machine a état
+
+switch(state)
+    {
+      case Start:
+        Serial.println("State Start");
+        //TODO Test jour ou nuit
+
+        //TODO SI jour, Etat suivant = DeepSleepShort
+        //TODO SI nuit, Etat suivant = DeepSleepLong
+        break;
+      case DeepSleepShort:
+        Serial.println("State DeepSleepShort");
+        //TODO Ajouter appel à standby(...)
+
+        //TODO Etat suivant = Start
+        break;
+      case DeepSleepLong:
+        Serial.println("State DeepSleepLong");
+        //TODO Ajouter appel à standby(...)
+
+        //TODO Etat suivant = Start
+        break;
+      case MesPHT:
+        Serial.println("State MesPHT");
+        //TODO Ajouter appel à mesPHT(...)
+
+        //TODO Test poids
+
+        //TODO SI poids < 5 Kg, Etat suivant = MesGPS
+        //TODO SINON Etat suivant = Send
+        break;
+      case MesGPS:
+        Serial.println("State MesGPS");
+        //TODO Ajouter appel à mesGPS(...)
+        break;
+      case Send:
+        Serial.println("State Send");
+        //TODO Ajouter appel à send(...)
+
+        //TODO Test jour ou nuit
+
+        //TODO SI jour, Etat suivant = DeepSleepShort
+        //TODO SI nuit, Etat suivant = DeepSleepLong
+        break;
+      default:
+        Serial.println("State Error");
+        //TODO Etat suivant = Start
+    delay(1000);
+    }//end switch
+}//end loop
