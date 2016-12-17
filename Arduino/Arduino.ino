@@ -3,7 +3,7 @@
 //#include "tempSonde.h"
 //#include "RTC.h"
 //#include "DHT11.h"
-#include "lcdI2C.h"
+//#include "lcdI2C.h"
 
 void setup() 
 {
