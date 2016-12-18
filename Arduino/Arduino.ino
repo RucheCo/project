@@ -54,18 +54,21 @@ switch(state)
 
         //TODO SI jour, Etat suivant = DeepSleepShort
         //TODO SI nuit, Etat suivant = DeepSleepLong
+        delay(1000);
         break;
       case DeepSleepShort:
         Serial.println("State DeepSleepShort");
         //TODO Ajouter appel à standby(...)
 
         //TODO Etat suivant = Start
+        delay(1000);
         break;
       case DeepSleepLong:
         Serial.println("State DeepSleepLong");
         //TODO Ajouter appel à standby(...)
 
         //TODO Etat suivant = Start
+        delay(1000);
         break;
       case MesPHT:
         Serial.println("State MesPHT");
@@ -75,10 +78,12 @@ switch(state)
 
         //TODO SI poids < 5 Kg, Etat suivant = MesGPS
         //TODO SINON Etat suivant = Send
+        delay(1000);
         break;
       case MesGPS:
         Serial.println("State MesGPS");
         //TODO Ajouter appel à mesGPS(...)
+        delay(1000);
         break;
       case Send:
         Serial.println("State Send");
@@ -88,10 +93,10 @@ switch(state)
 
         //TODO SI jour, Etat suivant = DeepSleepShort
         //TODO SI nuit, Etat suivant = DeepSleepLong
+        delay(1000);
         break;
       default:
         Serial.println("State Error");
         //TODO Etat suivant = Start
-    delay(1000);
     }//end switch
 }//end loop
