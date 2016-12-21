@@ -7,11 +7,6 @@ m = 60;
 h = 60 * m;
 j = 24 * h;
 tMax = 10*j; 
-tOn = 2; %sec
-tOff = 60; %sec
-
-rOn = tOn/(tOn+tOff);
-rOff = tOff/(tOn+tOff);
 
 t = 1:tMax;
 
@@ -24,7 +19,7 @@ E_batt_t = zeros(length(t),1);
 %% Récupération des spec
 
 spec = readtable('specModules.xlsx','ReadRowNames',true,'ReadVariableNames',true);
-pMoy = spec.tension .* (spec.consoOn * rOn + spec.consoOff * rOff);
+pMoy = spec.tension .* (spec.consoOn .* spec.rOn + spec.consoOff .* spec.rOff);
 spec = [spec array2table(pMoy)];
 
 %% Batterie
@@ -63,11 +58,14 @@ P_sol_max_h = P_sol_max * Irradiance_h / Irradiance_max;        % Watt
 
 x = [Sunrise Midday Sunset];
 y = [0 1 0];
-p = polyfit(x,y,2);
-a = p(1);
-b = p(2);
-c = p(3);
+% p = polyfit(x,y,2);
+% a = p(1);
+% b = p(2);
+% c = p(3);
 
+a = -4.82253086419754e-09;
+b = 0.000451388888888890;
+c = -9.56250000000004;
 courbe_sol = a * mod(t,j).^2 + b * mod(t,j) + c;
 ix = find(courbe_sol<0);
 courbe_sol(ix) = 0;
