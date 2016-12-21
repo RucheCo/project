@@ -6,7 +6,7 @@ close all
 m = 60;
 h = 60 * m;
 j = 24 * h;
-tMax = 1*j; 
+tMax = 10*j; 
 tOn = 2; %sec
 tOff = 60; %sec
 
@@ -34,8 +34,8 @@ spec = [spec array2table(pMoy)];
 
 Q_batt = 1050e-3;                                               % A.h
 U_batt = 3.7;                                                   % V
-E_batt = 3.9;                                                   % W.h
-E_batt_t(1) = E_batt; 
+E_batt_max = 3.9*h;                                          % W.s
+E_batt_t(1) = E_batt_max; 
 
 %% Cellule solaire
 
@@ -75,19 +75,32 @@ courbe_sol(ix) = 0;
 P_tot_decharge = sum(spec.pMoy);
 P_tot_charge = P_sol_max_h;
 
-for cpt = t
-    E_batt_t(cpt) = E_batt_t(cpt) + ...
-                    P_tot_charge * courbe_sol(cpt) / 3600 - ... 
-                    P_tot_decharge / 3600;
+for cpt = 2:length(t)
+    E_batt_t(cpt) = E_batt_t(cpt-1) + ...
+                    P_tot_charge * courbe_sol(cpt-1) - ... 
+                    P_tot_decharge;
+    if E_batt_t(cpt) > E_batt_max
+        E_batt_t(cpt) = E_batt_max;
+    elseif E_batt_t(cpt) < 0
+        E_batt_t(cpt) = 0;
+    end
 end
-% pB ici
 
+figure
+subplot(2,1,1);
 XMIN = 0;
 XMAX = tMax;
 YMIN = -0.1;
 YMAX = 1.1;
-plot(t, courbe_sol, t, E_batt_t)
+plot(t, courbe_sol/max(courbe_sol))
 ylabel('Courbe du soleil')
 axis([XMIN XMAX YMIN YMAX])
-
+subplot(2,1,2);
+XMIN = 0;
+XMAX = tMax;
+YMIN = -0.1;
+YMAX = 1.1;
+plot(t, E_batt_t/max(E_batt_t))
+ylabel('Energie dans la batterie')
+axis([XMIN XMAX YMIN YMAX])
 
