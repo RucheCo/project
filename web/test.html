@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<script>
+var sse1 = function () {
+    var rebound = 20; //set it to 0 if rebound effect is not prefered
+    var slip, k;
+    return {
+        buildMenu: function () {
+            var m = document.getElementById('sses1');
+            if(!m) return;
+            var ul = m.getElementsByTagName("ul")[0];
+            m.style.width = ul.offsetWidth+1+"px";
+            var items = m.getElementsByTagName("li");
+            var a = m.getElementsByTagName("a");
+
+            slip = document.createElement("li");
+            slip.className = "highlight";
+            ul.appendChild(slip);
+
+            var url = document.location.href.toLowerCase();
+            k = -1;
+            var nLength = -1;
+            for (var i = 0; i < a.length; i++) {
+                if (url.indexOf(a[i].href.toLowerCase()) != -1 && a[i].href.length > nLength) {
+                    k = i;
+                    nLength = a[i].href.length;
+                }
+            }
+
+            if (k == -1 && /:\/\/(?:www\.)?[^.\/]+?\.[^.\/]+\/?$/.test) {
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i].getAttribute("maptopuredomain") == "true") {
+                        k = i;
+                        break;
+                    }
+                }
+                if (k == -1 && a[0].getAttribute("maptopuredomain") != "false")
+                    k = 0;
+            }
+
+            if (k > -1) {
+                slip.style.width = items[k].offsetWidth + "px";
+                //slip.style.left = items[k].offsetLeft + "px";
+                sse1.move(items[k]); //comment out this line and uncomment the line above to disable initial animation
+            }
+            else {
+                slip.style.visibility = "hidden";
+            }
+
+            for (var i = 0; i < items.length - 1; i++) {
+                items[i].onmouseover = function () {
+                    if (k == -1) slip.style.visibility = "visible";
+                    if (this.offsetLeft != slip.offsetLeft) {
+                        sse1.move(this);
+                    }
+                }
+            }
+
+            m.onmouseover = function () {
+                if (slip.t2)
+                    slip.t2 = clearTimeout(slip.t2);
+            };
+
+            m.onmouseout = function () {
+                if (k > -1 && items[k].offsetLeft != slip.offsetLeft) {
+                    slip.t2 = setTimeout(function () { sse1.move(items[k]); }, 50);
+                }
+                if (k == -1) slip.t2 = setTimeout(function () { slip.style.visibility = "hidden"; }, 50);
+            };
+        },
+        move: function (target) {
+            clearInterval(slip.timer);
+            var direction = (slip.offsetLeft < target.offsetLeft) ? 1 : -1;
+            slip.timer = setInterval(function () { sse1.mv(target, direction); }, 15);
+        },
+        mv: function (target, direction) {
+            if (direction == 1) {
+                if (slip.offsetLeft - rebound < target.offsetLeft)
+                    this.changePosition(target, 1);
+                else {
+                    clearInterval(slip.timer);
+                    slip.timer = setInterval(function () {
+                        sse1.recoil(target, 1);
+                    }, 15);
+                }
+            }
+            else {
+                if (slip.offsetLeft + rebound > target.offsetLeft)
+                    this.changePosition(target, -1);
+                else {
+                    clearInterval(slip.timer);
+                    slip.timer = setInterval(function () {
+                        sse1.recoil(target, -1);
+                    }, 15);
+                }
+            }
+            this.changeWidth(target);
+        },
+        recoil: function (target, direction) {
+            if (direction == -1) {
+                if (slip.offsetLeft > target.offsetLeft) {
+                    slip.style.left = target.offsetLeft + "px";
+                    clearInterval(slip.timer);
+                }
+                else slip.style.left = slip.offsetLeft + 2 + "px";
+            }
+            else {
+                if (slip.offsetLeft < target.offsetLeft) {
+                    slip.style.left = target.offsetLeft + "px";
+                    clearInterval(slip.timer);
+                }
+                else slip.style.left = slip.offsetLeft - 2 + "px";
+            }
+        },
+        changePosition: function (target, direction) {
+            if (direction == 1) {
+                //following +1 will fix the IE8 bug of x+1=x, we force it to x+2
+                slip.style.left = slip.offsetLeft + Math.ceil(Math.abs(target.offsetLeft - slip.offsetLeft + rebound) / 10) + 1 + "px";
+            }
+            else {
+                //following -1 will fix the Opera bug of x-1=x, we force it to x-2
+                slip.style.left = slip.offsetLeft - Math.ceil(Math.abs(slip.offsetLeft - target.offsetLeft + rebound) / 10) - 1 + "px";
+            }
+        },
+        changeWidth: function (target) {
+            if (slip.offsetWidth != target.offsetWidth) {
+                var diff = slip.offsetWidth - target.offsetWidth;
+                if (Math.abs(diff) < 4) slip.style.width = target.offsetWidth + "px";
+                else slip.style.width = slip.offsetWidth - Math.round(diff / 3) + "px";
+            }
+        }
+    };
+} ();
+
+if (window.addEventListener) {
+    window.addEventListener("load", sse1.buildMenu, false);
+}
+else if (window.attachEvent) {
+    window.attachEvent("onload", sse1.buildMenu);
+}
+else {
+    window["onload"] = sse1.buildMenu;
+}
+</script>
+<html>
+	<head>	
+		<div class="color" align="left" style="height:150px">
+				<img src="/images/vector-honey.jpg" style="height:150px;float:left;" alt="pourquoi rien ne s'affiche?" />
+				<div>
+				<p class="logo" align="middle"><FONT FACE="Arial" size="10px">RucheCo</FONT></p>
+				</div>
+   
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<div class="w3-padding w3-xxlarge w3-text-light-grey" style="float:right;padding-top:44px!important;">
+    <i class="glyphicon glyphicon-user w3-hover-green" ></i>
+    <i class="glyphicon glyphicon-remove w3-hover-green"></i>
+	</div>
+  </div>
+		</div>
+		
+		<!-- Chiffrement de la page -->
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="PFEstyle.css" />
+		<!-- Menu-->
+	<div id="sse1">
+		<div id="sses1">
+			<ul>
+			  <li><a href="?menu=1&skin=2&p=Javascript-Menus">Historique</a></li>
+			  <li><a href="file:///R:/documents/5A/PFE/web/mesures.html">Espace Personnel</a></li>
+			  <li><a href="file:///R:/documents/5A/PFE/web/contact.html">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+		<title>RucheCO - Groupe PFE</title>
+		<!-- En-tête de la page -->
+	</head>
+	<body>
+	<!-- La partie concept de la page historique  -->
+	<div>
+		<div style="height:650px;background-color:#dbc6b3;">
+		<img src="/images/full-hony.jpg" class="pic1" alt="pourquoi rien ne s'affiche?" />
+		
+			<!-- pour envoyer un mail depuis un lien (href="mailto:votreadresse@bidule.com") pour télécharger un zip (href="monfichier.zip")-->	
+			<!-- <li class="tabulation"style="padding-top:50px"></li> -->
+			
+			<p class="tabulation" 	style="text-align:center;padding-top:150px;"><FONT face="arial" size="6px;">Le Concept<br></FONT></p>
+			<p class="tabulation" style="float;right;padding-top:80px;">Ce projet est née au début de l'année 2016. Il à d'abord été un simple projet 
+			de fin d'étude mais à rapidement pris la tournure d'un défis. Nous somme une équipe de 6 étudiants de la même école (l'ESIEA).
+			Ce projet à germé et est née dans le cerveau de notre professeur M.Yann Douze. Nous avons tout de suite été attiré par les contraintes très
+			intéréssentes du projet. Ce projet s'incrit dans notre majeur technique, les systèmes embarqués.</p>
+			<br><HR width="350px" style="margin-right:290px;float:right;border-top:1px solid"></HR></br>
+		</div>
+	</div>
+	<!-- La partie équipe de l'historiqque  -->
+	<div>
+		<div style="height:750px;background-color:#53AF4A;">
+			<p class="equip">l'Equipe</p>
+			<img src="/images/hony - vert.png" class="pic2" alt="pourquoi rien ne s'affiche?" />
+			<br><HR width="350x" color="white" style="position:absolute;margin-top:-46px;margin-left:39%;"></HR>
+		</div>
+	</div>
+	<!-- La partie objectif de l'historique -->
+		<div style="height:750px;background-color:#e8dfce;">
+			<img src="/images/map.png" class="pic3" alt="pourquoi rien ne s'affiche?" />
+			<p class="tabulation1" style="text-align:center;padding-top:200px;"><FONT face="arial" size="6px;">Nos Objectifs</FONT></p>
+			<p class="tabulation1" style="float;right;padding-top:80px;margin-left:20px;">Lorem ipsum dolor sit amet, id arcu proin vitae, sit gravida. Egestas non risus nec in, proin et ut ac orci
+			diam imperdiet, non integer condimentum lorem orci at lacus, iaculis ipsum aliquam vitae ultricies sed, accumsan nec. 
+			Quis sodales leo quis elit id, ut quam faucibus eros tempor, penatibus arcu maecenas ornare at. Massa quam malesuada suspendisse
+			amet nulla, libero arcu maecenas orci sapien ut lectus, arcu molestie duis velit cursus. Metus enim, dictum lacus metus, 
+			diam magna vestibulum. Cras vestibulum. Pulvinar arcu ac consectetuer. Elit sed curabitur, tellus arcu, molestiae sed tincidunt etiam 
+			eget porta, metus nec dignissim at id mus, integer aenean in ut quis ligula lorem.</p>
+			<br><HR width="350px" style="margin-right:180px;float:right;border-top:1px solid"></HR>
+	</div>
+	<!-- Footer de la page -->
+	<footer>
+	<div class="footer">
+		<div class="footer1">
+			<!-- <img src="/images/logos/esiea.png" class="logo_footer" style="height:25px;" alt="ESIEA" /> -->
+			<p style="color:white;margin-bottom:-15px;text-align:center;margin-bottom:-5px"><FONT face="arial" size="5px">Ressources</FONT></p>
+			<ul class="blanc" style="color:#565656">
+				<li style="padding-top:5px">L'equipe</li>
+				<li style="padding-top:5px">Notre budget</li>
+				<li style="padding-top:5px">Participer au financement</li>
+			</ul>
+		</div>
+		<div class="footer1">
+			<!-- <img src="/images/logos/esiea.png" class="logo_footer" style="height:25px;" alt="ESIEA" /> -->
+			<p style="color:white;margin-bottom:-15px;text-align:center;margin-bottom:-5px"><FONT face="arial" size="5px">FAQ</FONT></p>
+			<ul class="blanc" style="color:#565656">
+				<li style="padding-top:5px">Qui sommes nous</li>
+				<li style="padding-top:5px">Comment nous contacter</li>
+				<li style="padding-top:5px">Laisser un commentaire</li>
+			</ul>
+		</div>
+		<div class="footer1">
+			<!-- <img src="/images/logos/esiea.png" class="logo_footer" style="height:25px;" alt="ESIEA" /> -->
+			<p style="color:white;margin-bottom:-15px;text-align:center;margin-bottom:-5px"><FONT face="arial" size="5px">En plus</FONT></p>
+			<ul class="blanc" style="color:#565656">
+				<li style="padding-top:5px">Avancements</li>
+				<li style="padding-top:5px">Annexes</li>
+				<li style="padding-top:5px">Notes</li>
+			</ul>
+		</div>
+	</div>
+	</footer>
+	</div>
+	</body>
+</html> 

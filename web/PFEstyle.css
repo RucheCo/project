@@ -1,0 +1,210 @@
+body{
+	margin: 0px;
+	background-color:#f7f5ed;
+}
+li{
+	font:normal 15px Arial;
+}
+.color{
+	background-color: #f8cf5d;
+}
+.logo{
+	margin:0px;
+	padding-right:200px;
+	padding-top:45px;
+}
+.buttoncolor {
+	background-color: red;
+}
+size{
+	height:150px;
+}
+label {
+display:block;
+width:150px;
+float:left;
+}
+.tabulation{
+	text-indent:20px;
+	text-align:justify;
+	margin-top:auto;
+	margin-right:100px;
+	margin-bottom:auto;
+	padding-top:5px;
+	font:normal 18px Arial;
+}
+.tabulation1{
+	text-indent:20px;
+	text-align:center;
+	margin-top:auto;
+	margin-right:15px;
+	margin-bottom:auto;
+	padding-top:5px;
+	font:normal 18px Arial;
+}
+.tabulation2{
+	text-indent:20px;
+	text-align:center;
+	margin-top:auto;
+	margin-right:100px;
+	margin-bottom:auto;
+	padding-top:5px;
+	font:normal 18px Arial;
+}
+.explain{
+	color:white;
+	float:right;
+	text-align:justify;
+	margin-top:80px;
+	padding-right:150px;
+	font:normal 15px Arial;
+}
+.explaintext{
+	color:#565656;
+	float:right;
+	margin-right:45px;
+	margin-top:-130px;
+	font:normal 15px Arial;
+}
+.explaintext1{
+	color:#565656;
+	float:right;
+	margin-right:125px;
+	margin-top:-130px;
+	font:normal 15px Arial;
+}
+.explainfoot{
+	color:#565656;
+	float:right;
+	margin-right:45px;
+	margin-right:133px;
+	margin-top:-95px;
+	font:normal 15px Arial;
+}
+.tabulation40{
+	text-indent:40px;
+	text-align:justify;
+	margin-top:auto;
+	margin-bottom:auto;
+	padding-top:4px;
+	font:normal 20px Arial;
+}
+.pic1{
+	float:left;
+	width:50%;
+	height:650px;
+	margin-right:100px;
+}
+.pic2{
+	padding-left:555px;
+	width:80;
+	height:750px;
+}
+.pic3{
+	float:right;
+	width:80;
+	height:750px;
+}
+.equip{
+	position:absolute;
+	margin-top:0px;
+	padding-top:25px;
+	font:normal 40px Arial;
+	margin-left:45%;
+	color:white;
+}
+.footer{
+	height:200px;
+	background-color:#222;
+	padding:5px;
+}
+.footer1{
+	height:150px;
+	background-color:#222;
+	padding-top:33px;
+	display:block; 
+	box-sizing:border-box;
+	border-bottom:solid 1px #f8cf5d;
+	float:left;
+	margin-left:18.5%;
+	margin-top:10px;
+}
+
+.bottom{
+	border-top:solid 1px #f8cf5d;
+	border-bottom:solid 1px #f8cf5d;
+	padding-top:50px;
+	padding-bottom:50px;
+}
+.bottom1{
+	border-bottom:solid 1px #f8cf5d;
+	padding-top:100px;
+	padding-bottom:50px;
+}
+.bottom2{
+	border-top:solid 1px #f8cf5d;
+	padding-top:75px;
+	padding-bottom:50px;
+}
+.bottom3{
+	border-top:solid 1px #f8cf5d;
+	padding-bottom:50px;
+}
+.blanc{
+	list-style-type:none;
+	text-align:initial;
+	padding:4px;
+}
+#sse1
+{
+    /*You can decorate the menu's container, such as adding background images through this block*/
+    background-color: #222;
+    height: 38px;
+    padding: 10px;
+    border-radius: 2px;
+    box-sizing: content-box;
+}
+#sses1
+{
+    margin:0 auto;/*This will make the menu center-aligned. Removing this line will make the menu align left.*/
+}
+#sses1 ul 
+{ 
+    position: relative;
+    list-style-type: none;
+    float:left;
+    padding:0;margin:0;
+    border-bottom:solid 1px #f8cf5d;
+}
+#sses1 li
+{
+    float:left;
+    list-style-type: none;
+    padding:0;margin:0;background-image:none;
+}
+/*CSS for background bubble*/
+#sses1 li.highlight
+{
+    /* background-color:#800; */
+    top:36px;
+    height:2px;
+    border-bottom:solid 2px #53AF4A;	/*bleu #63b0b8*/
+    z-index: 1;
+    position: absolute;
+    overflow:hidden;
+}
+#sses1 li a
+{
+    box-sizing: content-box;
+    height:30px;
+    padding-top: 8px;
+    margin: 0 50px;/*used to adjust the distance between each menu item. Now the distance is 20+20=40px.*/
+    color: #fff;
+    font: normal 16px arial;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
