@@ -4,12 +4,14 @@
 //#include "RTC.h"
 //#include "DHT11.h"
 //#include "lcdI2C.h"
+#include "vol.h"
 #include "states.h"
 
 State state = Start;
 
 void setup() 
 {
+  attachInterrupt(digitalPinToInterrupt(3), fonctionVol, RISING);
   Serial.begin(9600);
   Serial.println("setup begin");
   //setupSonde();
