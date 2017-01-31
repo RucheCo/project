@@ -3,5 +3,6 @@
 
 void setupSonde();
 float getTempSonde();
+int convTemp(float tempSonde);
 
 #endif //TEMPSONDE_H_INCLUDED

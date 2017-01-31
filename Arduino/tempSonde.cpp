@@ -27,3 +27,15 @@ float getTempSonde()
   return (tempetf);
   
 }
+
+
+int convTemp(float tempSonde)
+{
+  int tempTemp = 0;
+  int temp = 0;
+  
+  tempTemp = (tempSonde+50)*100;
+  temp = ((tempTemp + 50/2) / 50) * 50;
+  temp = (temp*2)/100;
+  return temp;
+}

@@ -8,6 +8,22 @@
 #ifndef CODE_HEADERS_CONSTANTS_H_
 #define CODE_HEADERS_CONSTANTS_H_
 
+// assignation PIN
+#define PIN_HUMIDITY 0
+#define PIN_SIGFOX_TX 1
+#define PIN_TEMPERATURE 2
+#define PIN_INTERUPT 3
+#define PIN_ALIM_CAPTEUR 4
+#define PIN_ALIM_GPS 5
+#define PIN_ALIM_SIGFOX 6
+#define PIN_BUTTON 7
+#define PIN_GPG_RX 9
+#define PIN_GPS_TX 10
+
+#define PIN_GPS_TX 10
+#define PIN_BAL_DATA 11
+#define PIN_BAL_CLK 12
+
 // durée courte de veille en minutes
 #define DEEPSLEEP_SHORT_DURATION (8*60)
 
